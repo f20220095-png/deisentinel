@@ -224,7 +224,7 @@ fig_timeline.update_layout(
         categoryorder="total ascending" # Keeps order somewhat logical
     ),
     showlegend=False, # We use the color contextually
-    margin=dict(l=20, r=20, t=30, b=20)
+    margin=dict(l=20, r=20, t=60, b=20) # Increased top margin for annotation
 )
 
 # Add Annotation for Latency
@@ -234,14 +234,14 @@ latency_days = (end_date - start_date).days
 
 fig_timeline.add_shape(
     type="line",
-    x0=start_date, y0=-0.5, x1=end_date, y1=-0.5,
+    x0=start_date, y0=1.05, x1=end_date, y1=1.05, # Moved to top
     line=dict(color="#FFC107", width=2, dash="dot"),
-    xref="x", yref="paper" # Position at bottom
+    xref="x", yref="paper"
 )
 
 fig_timeline.add_annotation(
     x=start_date + (end_date - start_date)/2,
-    y=-0.1,
+    y=1.15, # Moved above the line
     text=f"Diagnostic Latency: {latency_days} Days",
     showarrow=False,
     font=dict(color="#FFC107", size=14, family="Roboto Mono"),
