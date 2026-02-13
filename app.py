@@ -134,7 +134,24 @@ with col_radar_left:
         delta_color="off"
     )
     
-    st.info(f"**Archetype Detected:** {selected_disease}\n\nHigh latency observed in initial diagnostic phase.")
+    # Disease-specific archetype descriptions
+    archetype_info = {
+        "Heart Failure": {
+            "archetype": "The Crash",
+            "description": "**Critical Cost Inefficiency Detected**\n\n Patients experience excessive, redundant testing and emergency department visits.\n\n💡 **Key Pattern**: Acute episodes drive up costs rapidly through repeated hospitalizations and intensive interventions. Care coordination gaps lead to preventable readmissions."
+        },
+        "Diabetes": {
+            "archetype": "The Creep", 
+            "description": "**Dangerous Diagnostic Delays Detected**\n\n Patients wait an average of 166 days from first symptoms to confirmed diagnosis.\n\n💡 **Key Pattern**: Slow progression allows symptoms to be dismissed across multiple GP visits. Vision problems and fatigue are often attributed to other causes before endocrine consultation."
+        },
+        "Lung Cancer": {
+            "archetype": "The Complex",
+            "description": "**Severe Care Fragmentation Detected**\n\n Patients navigate through 6+ different specialists before reaching oncology.\n\n💡 **Key Pattern**: Respiratory symptoms trigger referrals to pulmonology, cardiology, ENT, and radiology. Lack of diagnostic pathway coordination creates a 'medical maze' effect."
+        }
+    }
+    
+    info = archetype_info[selected_disease]
+    st.info(f"**Archetype:** {info['archetype']}\n\n{info['description']}")
 
 with col_radar_right:
     # Radar Chart
